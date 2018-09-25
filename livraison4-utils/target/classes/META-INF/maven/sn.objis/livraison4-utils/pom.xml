@@ -9,9 +9,7 @@
 		<artifactId>livraison4</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>sn.objis</groupId>
 	<artifactId>livraison4-utils</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>livraison4-utils</name>
 	<url>http://maven.apache.org</url>
 	<properties>

@@ -9,9 +9,7 @@
 		<artifactId>livraison4</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>sn.objis</groupId>
 	<artifactId>livraison4-dao</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>livraison4-dao</name>
 	<url>http://maven.apache.org</url>
 
