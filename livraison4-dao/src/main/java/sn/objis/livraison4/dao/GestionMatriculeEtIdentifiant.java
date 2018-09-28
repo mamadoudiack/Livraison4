@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Logger;
 
 import sn.objis.livraison4.utils.MaConnection;
 
@@ -23,7 +24,14 @@ public class GestionMatriculeEtIdentifiant {
 	 * Creation d'une instance de connexion pour acceder à la base de donnees
 	 */
 	Connection con = MaConnection.getInstanceConnection();
-
+	Logger logger = Logger.getLogger("InfoLogging");
+	PreparedStatement  preparedStatement;
+	Statement statement;
+	ResultSet resultSet;
+	PreparedStatement  pr;
+	Statement st;
+	ResultSet re;
+	private static final String FAILED2 = "failed"; 
 	/**
 	 * La methode 'matEtudiant' permet de generer le matricule d'eleve de maniere
 	 * automatique
@@ -32,28 +40,36 @@ public class GestionMatriculeEtIdentifiant {
 	 */
 	public String matEtudiant() {
 
-		String matricule = null;
-		int numr = 0;
+		String mat = null;
+		int n = 0;
 		try {
 
 			String sql1 = "Select * From matricule";
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql1);
-			while (rs.next()) {
-				matricule = rs.getString("mateleve");
-				numr = rs.getInt("nbeleve");
+			 st = con.createStatement();
+			 re = st.executeQuery(sql1);
+			while (re.next()) {
+				mat = re.getString("mateleve");
+				n = resultSet.getInt("nbeleve");
 			}
 			String sql = "Update matricule Set nbeleve=? WHERE id=?";
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, numr + 1);
-			ps.setInt(2, 1);
-			ps.executeUpdate();
+			pr = con.prepareStatement(sql);
+			pr.setInt(1, n + 1);
+			pr.setInt(2, 1);
+			pr.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.info(FAILED2 );
+		}finally {
+			try {
+				st.close();
+				re.close();
+				pr.close();
+			} catch (SQLException e) {
+				logger.info(FAILED2 );
+			}
 		}
 
-		return matricule + numr;
+		return mat + n;
 	}
 
 	/**
@@ -68,23 +84,31 @@ public class GestionMatriculeEtIdentifiant {
 		try {
 
 			String sql1 = "Select * From identifiant";
-			Statement st = con.createStatement();
+			 statement = con.createStatement();
 
-			ResultSet rs = st.executeQuery(sql1);
-			while (rs.next()) {
-				matricule = rs.getString("identifiant");
-				numr = rs.getInt("nbprof");
+			 resultSet =  statement.executeQuery(sql1);
+			while (resultSet.next()) {
+				matricule = resultSet.getString("identifiant");
+				numr = resultSet.getInt("nbprof");
 			}
 
 			String sql = "Update identifiant Set nbprof=? WHERE id=?";
-			PreparedStatement ps = con.prepareStatement(sql);
+			preparedStatement = con.prepareStatement(sql);
 
-			ps.setInt(1, numr + 1);
-			ps.setInt(2, 1);
-			ps.executeUpdate();
+			preparedStatement.setInt(1, numr + 1);
+			preparedStatement.setInt(2, 1);
+			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.info(FAILED2 );
+		}finally {
+			try {
+				statement.close();
+				resultSet.close();
+				preparedStatement.close();
+			} catch (SQLException e) {
+				logger.info(FAILED2 );
+			}
 		}
 
 		return matricule + numr;

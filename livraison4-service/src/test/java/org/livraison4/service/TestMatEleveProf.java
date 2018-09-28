@@ -42,7 +42,7 @@ public class TestMatEleveProf {
 	 */
 	@Test
 	public void testIdprofService() {
-		matEleveProf.IdprofService();
+		matEleveProf.idprofService();
 	}
 
 }

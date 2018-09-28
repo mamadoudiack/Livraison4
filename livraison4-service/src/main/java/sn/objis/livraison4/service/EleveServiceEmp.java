@@ -2,11 +2,15 @@ package sn.objis.livraison4.service;
 
 
 
+import java.sql.Connection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 
 import sn.objis.livraison4.dao.EleveEmp;
+
 import sn.objis.livraison4.domaine.Eleve;
+import sn.objis.livraison4.utils.MaConnection;
 
 /**
  * La classe 'EleveServiceEmp ' fourni une implementation de interface
@@ -23,7 +27,9 @@ public class EleveServiceEmp implements IServiceEleve {
 	 * Creation d'une instance de EleveEmp
 	 */
 	private EleveEmp daoEleve = new EleveEmp();
-
+	Connection con = MaConnection.getInstanceConnection();
+	Logger logger = Logger.getLogger("InfoLogging");
+	
 
 	public void ajouter(Eleve t) {
 		daoEleve.create(t);
@@ -51,21 +57,21 @@ public class EleveServiceEmp implements IServiceEleve {
 	
 	public Eleve rechercherParMatricule(String matricule) {
 
-		return daoEleve.FindByMatricule(matricule);
+		return daoEleve.findByMatricule(matricule);
 	}
 
 	
 	public void afficher(Eleve t) {
-		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
-		System.out.println("_____________DONNEES DE L'ELEVE______________");
-		System.out.println("+Nom               : " + t.getNom());
-		System.out.println("+Prenom            : " + t.getPrenom());
-		System.out.println("+Adresse           : " + t.getAdresse());
-		System.out.println("+Date de naissance : " + t.getDateDeNaissance());
-		System.out.println("+Tel               : " + t.getTel());
-		System.out.println("+Matricule         : " + t.getMatricule());
-		System.out.println("+Moyenne           : " + t.getMoyenne());
-		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
+		logger.info("+++++++++++++++++++++++++++++++++++++++++++++");
+		logger.info("_____________DONNEES DE L'ELEVE______________");
+		logger.info("+Nom               : " + t.getNom());
+		logger.info("+Prenom            : " + t.getPrenom());
+		logger.info("+Adresse           : " + t.getAdresse());
+		logger.info("+Date de naissance : " + t.getDateDeNaissance());
+		logger.info("+Tel               : " + t.getTel());
+		logger.info("+Matricule         : " + t.getMatricule());
+		logger.info("+Moyenne           : " + t.getMoyenne());
+        logger.info("+++++++++++++++++++++++++++++++++++++++++++++");
 	}
 
 	

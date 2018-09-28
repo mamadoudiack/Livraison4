@@ -34,7 +34,7 @@ public class MatEleveProf {
 	 * 
 	 * @return il retourne le matricule genere
 	 */
-	public String IdprofService() {
+	public String idprofService() {
 		return gestionMatriculeEtIdentifiant.matformateur();
 	}
 

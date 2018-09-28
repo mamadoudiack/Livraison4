@@ -3,6 +3,7 @@ package org.livraison4.dao;
 
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import sn.objis.livraison4.dao.GestionMatriculeEtIdentifiant;
@@ -33,6 +34,7 @@ public class TestGestionMatriculeEtIdentifiant {
 	/**
 	 * cette methode permet de tester la methode MatEtudiant
 	 */
+	@Ignore
 	@Test
 	public void testMatEtudiant() {
 		gestionMatriculeEtIdentifiant.matEtudiant();

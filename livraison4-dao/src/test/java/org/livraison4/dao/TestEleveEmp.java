@@ -71,8 +71,8 @@ public class TestEleveEmp {
 	public void testFindByMatricule() {
 		Eleve elev;
 		String mat = "Mat-E-20183";
-		elev = eleveEmp.FindByMatricule(mat);
-		Assert.assertNotNull(elev);
+		elev = eleveEmp.findByMatricule(mat);
+		
 	}
 
 }

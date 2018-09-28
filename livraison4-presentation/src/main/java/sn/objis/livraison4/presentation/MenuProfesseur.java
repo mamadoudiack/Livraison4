@@ -1,14 +1,12 @@
 package sn.objis.livraison4.presentation;
 
-
-
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 import sn.objis.livraison4.domaine.Professeur;
 import sn.objis.livraison4.service.MatEleveProf;
 import sn.objis.livraison4.service.ProfesseurServiceEmp;
-
 
 /**
  * La classe 'MenuProfesseur' permet de tester les differents services de
@@ -25,44 +23,45 @@ public class MenuProfesseur {
 
 	ProfesseurServiceEmp professeurServiceEmp = new ProfesseurServiceEmp();
 	MatEleveProf matEleveProf = new MatEleveProf();
+	Logger logger = Logger.getLogger("InfoLogging");
 
-	private void EcranMenu() {
-		System.out.println("Bienvenue dans votre application Gestion scolaire veuillez faire votre choix");
-		System.out.println("1:Ajouter un Professeur");
-		System.out.println("2:Suprimer un Professeur");
-		System.out.println("3:Modifier un Professeur");
-		System.out.println("4:Afficher la liste des Professeur");
-		System.out.println("5:Afficher un Professeur");
-		System.out.println("6:Retourner au menu principale");
-		System.out.println("7:Quitter");
+	private void ecranMenu() {
+		logger.info("Bienvenue dans votre application Gestion scolaire veuillez faire votre choix");
+		logger.info("1:Ajouter un Professeur");
+		logger.info("2:Suprimer un Professeur");
+		logger.info("3:Modifier un Professeur");
+		logger.info("4:Afficher la liste des Professeur");
+		logger.info("5:Afficher un Professeur");
+		logger.info("6:Retourner au menu principale");
+		logger.info("7:Quitter");
 
 	}
 
 	private void afficherUnProfesseur() {
 		Professeur prof = null;
-		System.out.println("Veuillez saisir le matricule du Professeur  : ");
+		logger.info("Veuillez saisir le matricule du Professeur  : ");
 
 		String idProf = sc.nextLine();
 		prof = professeurServiceEmp.rechercherParIdentifiant(idProf);
 		if (prof == null) {
-			System.out.println("Le Professeur n'existe pas");
+			logger.info("Le Professeur n'existe pas");
 		} else {
 			professeurServiceEmp.afficher(prof);
 		}
 	}
 
-	public void AjouterUnProfesseur() {
+	public void ajouterUnProfesseur() {
 		Professeur prof = null;
-		String mat = matEleveProf.IdprofService();
-		System.out.println("Veuillez saisir le nom de du Professeur : ");
+		String mat = matEleveProf.idprofService();
+		logger.info("Veuillez saisir le nom de du Professeur : ");
 		String nom = sc.nextLine();
-		System.out.println("Veuillez saisir le prenom du Professeur : ");
+		logger.info("Veuillez saisir le prenom du Professeur : ");
 		String prenom = sc.nextLine();
-		System.out.println("Veuillez saisir l'adresse du Professeur : ");
+		logger.info("Veuillez saisir l'adresse du Professeur : ");
 		String adresse = sc.nextLine();
-		System.out.println("Veuillez saisir le numero de telephone du Professeur : ");
+		logger.info("Veuillez saisir le numero de telephone du Professeur : ");
 		String tel = sc.nextLine();
-		System.out.println("Veuillez saisir le duplome du Professeur : ");
+		logger.info("Veuillez saisir le duplome du Professeur : ");
 		String diplome = sc.nextLine();
 
 		prof = new Professeur(nom, prenom, adresse, tel, mat, diplome);
@@ -70,13 +69,13 @@ public class MenuProfesseur {
 	}
 
 	private void supprimerProfesseur() {
-		System.out.println("Veuillez saisir le matricule du Professeur a supprimer : ");
+		logger.info("Veuillez saisir le matricule du Professeur a supprimer : ");
 		String idprof = sc.nextLine();
 		Professeur prof = professeurServiceEmp.rechercherParIdentifiant(idprof);
 		if (prof != null) {
 			professeurServiceEmp.supprimer(prof);
 		} else {
-			System.out.println("le matricule n'existe pas");
+			logger.info("le matricule n'existe pas");
 		}
 	}
 
@@ -88,41 +87,38 @@ public class MenuProfesseur {
 
 	private void modifierProfesseur() {
 		Professeur prof = null;
-		System.out.println("Veuillez saisir le matricule du Professeur a modifier : ");
+		logger.info("Veuillez saisir le matricule du Professeur a modifier : ");
 		String idProf = sc.nextLine();
 		prof = professeurServiceEmp.rechercherParIdentifiant(idProf);
-		{
 			if (prof != null) {
 
-				System.out.println("Veuillez saisir le nouveau nom du  Professeur : ");
+				logger.info("Veuillez saisir le nouveau nom du  Professeur : ");
 				prof.setNom(sc.nextLine());
-				System.out.println("Veuillez saisir le nouveau prenom du  Professeur: ");
+				logger.info("Veuillez saisir le nouveau prenom du  Professeur: ");
 				prof.setPrenom(sc.nextLine());
 				professeurServiceEmp.maj(prof);
 			} else {
-				System.out.println("le matricule n'existe pas");
+				logger.info("le matricule n'existe pas");
 			}
-		}
-
 	}
 
 	public void menuCompleProfesseur() {
 		int choix = 0;
 		char response;
 		do {
-			EcranMenu();
+			ecranMenu();
 			do {
 				try {
 					choix = Integer.parseInt(sc.nextLine());
 					break;
 				} catch (Exception e) {
-					System.out.println("entre un entier");
+					logger.info("entre un entier");
 				}
 			} while (true);
 
 			switch (choix) {
 			case 1:
-				AjouterUnProfesseur();
+				ajouterUnProfesseur();
 				break;
 			case 2:
 				supprimerProfesseur();
@@ -143,12 +139,11 @@ public class MenuProfesseur {
 				System.exit(0);
 				break;
 			default:
-				System.out.println("entre un nombre compris entrev1 et 7");
+				logger.info("entre un nombre compris entrev1 et 7");
 				menuCompleProfesseur();
 			}
 
-			System.out
-					.println("pour retourner au menu principal tapez: O/o et sur n'importe quelle touche pour quitter");
+			logger.info("pour retourner au menu principal tapez: O/o et sur n'importe quelle touche pour quitter");
 
 			response = sc.nextLine().charAt(0);
 			if (response != 'O' && response != 'o') {

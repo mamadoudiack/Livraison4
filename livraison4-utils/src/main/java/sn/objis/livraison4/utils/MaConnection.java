@@ -5,6 +5,7 @@ package sn.objis.livraison4.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 
 /**
@@ -17,10 +18,11 @@ import java.sql.SQLException;
  */
 
 public class MaConnection {
+	
 	/**
 	 * url pour acceder à ala base de donnees
 	 */
-	//private static String url = "jdbc:mysql://localhost/gestionScolaire";
+	
 	private static String url = "jdbc:mysql://localhost/gestionScolaire?useSSL=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	/**
 	 * Le nom d'utilisateur de la base de donnees
@@ -48,14 +50,15 @@ public class MaConnection {
 	 * @return conn retourne un objet de type connection
 	 */
 	public static Connection getInstanceConnection() {
+		Logger logger = Logger.getLogger("InfoLogging");
 		try {
 			if (conn == null) {
 				conn = DriverManager.getConnection(url, userDb, pwdDb);
-				System.out.println("Connexion �tablie avec la base");
+				logger.info("Connexion �tablie avec la base");
 			}
 		} catch (SQLException e) {
-			System.out.println("Probl�me de connexion");
-			e.printStackTrace();
+			logger.info("Probl�me de connexion");
+			
 		}
 		return conn;
 	}

@@ -4,6 +4,7 @@ package sn.objis.livraison4.service;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 
 import sn.objis.livraison4.dao.ProfesseurEmp;
 import sn.objis.livraison4.domaine.Professeur;
@@ -22,7 +23,8 @@ public class ProfesseurServiceEmp implements IServiceProfesseur {
 	 * Creation d'une instance de ProfesseurEmp
 	 */
 	ProfesseurEmp daoProfesseur = new ProfesseurEmp();
-
+	Logger logger = Logger.getLogger("InfoLogging");
+	
 	
 	public void ajouter(Professeur t) {
 		daoProfesseur.create(t);
@@ -55,15 +57,15 @@ public class ProfesseurServiceEmp implements IServiceProfesseur {
 
 
 	public void afficher(Professeur t) {
-		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
-		System.out.println("_____________DONNEES DU PROFESSEUR__________+");
-		System.out.println("+Nom               : " + t.getNom());
-		System.out.println("+Prenom            : " + t.getPrenom());
-		System.out.println("+Adresse           : " + t.getAdresse());
-		System.out.println("+Tel               : " + t.getTel());
-		System.out.println("+Identifiant       : " + t.getIdentifiantProfesseur());
-		System.out.println("+Diplome           : " + t.getDiplome());
-		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
+		logger.info("+++++++++++++++++++++++++++++++++++++++++++++");
+		logger.info("_____________DONNEES DU PROFESSEUR__________+");
+		logger.info("+Nom               : " + t.getNom());
+		logger.info("+Prenom            : " + t.getPrenom());
+		logger.info("+Adresse           : " + t.getAdresse());
+		logger.info("+Tel               : " + t.getTel());
+		logger.info("+Identifiant       : " + t.getIdentifiantProfesseur());
+		logger.info("+Diplome           : " + t.getDiplome());
+		logger.info("+++++++++++++++++++++++++++++++++++++++++++++");
 	}
 
 	

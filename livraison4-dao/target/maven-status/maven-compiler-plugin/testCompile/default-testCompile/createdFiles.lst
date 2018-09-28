@@ -1,0 +1,4 @@
+org\livraison4\dao\TestGestionMatriculeEtIdentifiant.class
+org\livraison4\dao\AppTest.class
+org\livraison4\dao\TestProfesseurDao.class
+org\livraison4\dao\TestEleveEmp.class

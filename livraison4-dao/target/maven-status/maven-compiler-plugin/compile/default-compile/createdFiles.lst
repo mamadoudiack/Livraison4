@@ -1,0 +1,6 @@
+sn\objis\livraison4\dao\EleveEmp.class
+sn\objis\livraison4\dao\GestionMatriculeEtIdentifiant.class
+sn\objis\livraison4\dao\IDaoProfesseur.class
+sn\objis\livraison4\dao\IDaoEleve.class
+sn\objis\livraison4\dao\IDaoGenerique.class
+sn\objis\livraison4\dao\ProfesseurEmp.class

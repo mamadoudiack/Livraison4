@@ -23,5 +23,5 @@ public interface IDaoEleve extends IDaoGenerique<Eleve> {
 	 *            Parametre que reçoit la methode 'FindByMatricule'
 	 * @return : il etourne l'eleve trouve sinon il retourne null
 	 */
-	public Eleve FindByMatricule(String numeroCarte);
+	public Eleve findByMatricule(String numeroCarte);
 }
