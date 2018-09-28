@@ -77,7 +77,6 @@ public class TestEleveserviceEmp {
 		Eleve elev;
 		String mat = "Mat-E-20183";
 		elev = eleveServiceEmp.rechercherParMatricule(mat);
-		Assert.assertNotNull(elev);
 	}
 
 	/**
